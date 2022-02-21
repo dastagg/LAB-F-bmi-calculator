@@ -6,10 +6,10 @@ const labelTextStyle = TextStyle(
 );
 
 class IconContent extends StatelessWidget {
-  final IconData genderIcon;
-  final String genderText;
+  final IconData icon;
+  final String label;
 
-  IconContent({required this.genderIcon, required this.genderText});
+  IconContent({required this.icon, required this.label});
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +17,14 @@ class IconContent extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(
-          genderIcon,
+          icon,
           size: 80.0,
         ),
         const SizedBox(
           height: 15.0,
         ),
         Text(
-          genderText,
+          label,
           style: labelTextStyle,
         )
       ],
