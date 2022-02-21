@@ -9,7 +9,7 @@ enum Gender {
   female,
 }
 
-int _height = 180;
+int _personHeight = 180;
 
 class InputPage extends StatefulWidget {
   const InputPage({Key? key}) : super(key: key);
@@ -85,7 +85,7 @@ class _InputPageState extends State<InputPage> {
                     textBaseline: TextBaseline.alphabetic,
                     children: [
                       Text(
-                        _height.toString(),
+                        _personHeight.toString(),
                         style: kNumberTextStyle,
                       ),
                       const Text(
@@ -98,12 +98,12 @@ class _InputPageState extends State<InputPage> {
                   Slider(
                     activeColor: kBottomContainerColor,
                     inactiveColor: kInactiveCardColor,
-                    value: _height.toDouble(),
+                    value: _personHeight.toDouble(),
                     min: 120.0,
                     max: 220.0,
                     onChanged: (double newValue) {
                       setState(() {
-                        _height = newValue.round();
+                        _personHeight = newValue.round();
                       });
                     },
                   ),
