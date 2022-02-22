@@ -10,6 +10,8 @@ enum Gender {
 }
 
 int _personHeight = 180;
+int _personWeight = 60;
+int _personAge = 19;
 
 class InputPage extends StatefulWidget {
   const InputPage({Key? key}) : super(key: key);
@@ -92,7 +94,6 @@ class _InputPageState extends State<InputPage> {
                         'cm',
                         style: kLabelTextStyle,
                       ),
-
                     ],
                   ),
                   SliderTheme(
@@ -100,9 +101,11 @@ class _InputPageState extends State<InputPage> {
                       activeTrackColor: Colors.white,
                       inactiveTrackColor: kInactiveCardColor,
                       thumbColor: kBottomContainerColor,
-                      thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                      thumbShape:
+                          const RoundSliderThumbShape(enabledThumbRadius: 15.0),
                       overlayColor: kBottomContainerColor.withAlpha(90),
-                      overlayShape: const RoundSliderOverlayShape(overlayRadius: 24.0),
+                      overlayShape:
+                          const RoundSliderOverlayShape(overlayRadius: 24.0),
                     ),
                     child: Slider(
                       value: _personHeight.toDouble(),
@@ -125,11 +128,81 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     color: kActiveCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'WEIGHT',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          _personWeight.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(() {
+                                  _personWeight--;
+                                });
+                              },
+                            ),
+                            const SizedBox(width: 10.0),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(() {
+                                  _personWeight++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
                     color: kActiveCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'AGE',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          _personAge.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(() {
+                                  _personAge--;
+                                });
+                              },
+                            ),
+                            const SizedBox(width: 10.0),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(() {
+                                  _personAge++;
+                                });
+                              },
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -140,9 +213,40 @@ class _InputPageState extends State<InputPage> {
             margin: const EdgeInsets.only(top: 10.0),
             width: double.infinity,
             height: kBottomContainerHeight,
+            child: const Center(
+              child: Text(
+                'CALCULATE',
+                style: TextStyle(
+                  fontSize: 28.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
           )
         ],
       ),
+    );
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+  final IconData icon;
+  final VoidCallback onPressed;
+
+  const RoundIconButton({required this.icon, required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      elevation: 0.0,
+      child: Icon(icon),
+      onPressed: onPressed,
+      shape: const CircleBorder(),
+      constraints: const BoxConstraints.tightFor(
+        width: 56.0,
+        height: 56.0,
+      ),
+      fillColor: kInactiveCardColor,
     );
   }
 }
