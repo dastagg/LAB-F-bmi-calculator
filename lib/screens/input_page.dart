@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'reusable_card.dart';
-import 'icon_content.dart';
-import 'constants.dart';
+import '../components/reusable_card.dart';
+import '../components/icon_content.dart';
+import '../constants.dart';
 import 'results_page.dart';
+import '../components/bottom_button.dart';
+import '../components/round_icon_button.dart';
 
 enum Gender {
   male,
@@ -209,53 +211,19 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
+          BottomButton(
+            buttonText: 'CALCULATE',
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ResultsPage()),
+                MaterialPageRoute(
+                  builder: (context) => ResultsPage(),
+                ),
               );
             },
-            child: Container(
-              color: kBottomContainerColor,
-              margin: const EdgeInsets.only(top: 10.0),
-              width: double.infinity,
-              height: kBottomContainerHeight,
-              child: const Center(
-                child: Text(
-                  'CALCULATE',
-                  style: TextStyle(
-                    fontSize: 28.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          )
+          ),
         ],
       ),
-    );
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  final IconData icon;
-  final VoidCallback onPressed;
-
-  const RoundIconButton({required this.icon, required this.onPressed});
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      elevation: 0.0,
-      child: Icon(icon),
-      onPressed: onPressed,
-      shape: const CircleBorder(),
-      constraints: const BoxConstraints.tightFor(
-        width: 56.0,
-        height: 56.0,
-      ),
-      fillColor: kInactiveCardColor,
     );
   }
 }
